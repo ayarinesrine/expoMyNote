@@ -197,12 +197,12 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
   },
   picker: {
+    borderWidth: 4,
     height: 50,
     marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 5,
-    borderWidth: 4,
     fontWeight: "bold",
     color: "#114B5F",
     borderColor: "#114B5F",
