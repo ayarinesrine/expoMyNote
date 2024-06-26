@@ -8,8 +8,6 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="Note" />
-      <Stack.Screen name="Form" />
     </Stack>
   );
 }
