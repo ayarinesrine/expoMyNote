@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 5,
+    borderWidth: 4,
     fontWeight: "bold",
     color: "#114B5F",
     borderColor: "#114B5F",

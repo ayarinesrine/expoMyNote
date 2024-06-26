@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, FlatList, Dimensions } from "react-native";
 import { Card, Appbar } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { GestureHandlerRootView } from "react-native-gesture-handler"; // Import GestureHandlerRootView
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     backgroundColor: "#114B5F",
-    padding: 8,
+    padding: 7,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
