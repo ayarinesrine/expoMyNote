@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { StyleSheet, View, Text, FlatList, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Dimensions,
+  Image,
+} from "react-native";
 import { Card, Appbar } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -9,6 +16,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./types";
+import localImage from "./../assets/images/logo.png";
 
 type DashboardScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -146,7 +154,13 @@ const DashboardScreen: React.FC = () => {
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.scrollViewContainer}
           ListEmptyComponent={
-            <Text style={styles.noCardsMessage}>No cards available</Text>
+            <View style={styles.noCardsContainer}>
+              <Image style={styles.imageStyle} source={localImage} />
+              <Text style={styles.welcome}>Welcome </Text>
+              <Text style={styles.noCardsMessage}>
+                Your first note can be created now !
+              </Text>
+            </View>
           }
         />
       </SafeAreaProvider>
@@ -187,6 +201,7 @@ const styles = StyleSheet.create({
   dashboardTitle: {
     fontWeight: "bold",
     color: "#114B5F",
+    fontSize: 26,
     marginTop: 10,
   },
   dateTag: {
@@ -212,12 +227,14 @@ const styles = StyleSheet.create({
     color: "#114B5F",
     fontWeight: "bold",
   },
-  noCardsMessage: {
-    fontSize: 18,
-    color: "#114B5F",
-    textAlign: "center",
-    marginTop: 20,
+
+  imageStyle: {
+    width: 350,
+    height: 350,
+    alignSelf: "center",
+    marginTop: 30,
   },
+
   addButton: {
     backgroundColor: "#114B5F",
     padding: 7,
@@ -227,6 +244,21 @@ const styles = StyleSheet.create({
     margin: 10,
     color: "white",
     fontSize: 30,
+  },
+  noCardsMessage: {
+    fontSize: 22,
+    color: "#114B5F",
+    fontWeight: "semibold",
+    marginTop: 10,
+    marginHorizontal: 20,
+    maxWidth: 280,
+  },
+  noCardsContainer: { flex: 1, marginHorizontal: 20 },
+  welcome: {
+    fontSize: 28,
+    color: "#114B5F",
+    fontWeight: "bold",
+    marginHorizontal: 20,
   },
   iconContainer: {
     justifyContent: "center",

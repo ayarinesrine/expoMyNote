@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 30,
   },
-  formTitle: { fontWeight: "bold", color: "#114B5F" },
+  formTitle: { fontWeight: "bold", color: "#114B5F", fontSize: 26 },
 });
 
 export default FormScreen;

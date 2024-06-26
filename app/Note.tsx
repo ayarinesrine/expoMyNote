@@ -238,6 +238,7 @@ const styles = StyleSheet.create({
   noteTitle: {
     fontWeight: "bold",
     color: "#114B5F",
+    fontSize: 26,
   },
   titleContainer: {
     borderBottomWidth: 2,

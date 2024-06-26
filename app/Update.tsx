@@ -185,6 +185,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontWeight: "bold",
     color: "#114B5F",
+    fontSize: 26,
   },
   saveButton: {
     backgroundColor: "#114B5F",
