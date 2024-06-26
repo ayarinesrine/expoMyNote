@@ -159,13 +159,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingVertical: 40,
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "white",
   },
   container: {
     flex: 1,
     paddingVertical: 40,
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "white",
   },
   cardContainer: {
     marginBottom: 10,
@@ -220,12 +220,12 @@ const styles = StyleSheet.create({
   },
   addButton: {
     backgroundColor: "#114B5F",
-    padding: 10,
+    padding: 8,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     margin: 10,
-    color: "#fff",
+    color: "white",
     fontSize: 30,
   },
   iconContainer: {
