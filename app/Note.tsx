@@ -63,25 +63,6 @@ const NoteScreen: React.FC = () => {
     navigation.goBack();
   };
 
-  const handleSave = async () => {
-    try {
-      const storedNotes = await AsyncStorage.getItem("notes");
-      let notes: Note[] = storedNotes ? JSON.parse(storedNotes) : [];
-      const noteIndex = notes.findIndex((n) => n.id === noteId);
-
-      if (noteIndex !== -1 && note) {
-        notes[noteIndex] = note;
-      } else if (note) {
-        notes.push(note);
-      }
-
-      await AsyncStorage.setItem("notes", JSON.stringify(notes));
-      setSaveModalVisible(true);
-    } catch (error) {
-      console.error("Failed to save note.", error);
-    }
-  };
-
   const handleDelete = async () => {
     try {
       const storedNotes = await AsyncStorage.getItem("notes");
@@ -124,7 +105,7 @@ const NoteScreen: React.FC = () => {
             subtitle="Subtitle"
             titleStyle={styles.noteTitle}
           />
-          <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+          <TouchableOpacity style={styles.saveButton}>
             <MaterialCommunityIcons
               name="border-color"
               size={22}
