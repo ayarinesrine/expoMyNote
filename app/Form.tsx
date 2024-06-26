@@ -76,7 +76,7 @@ const FormScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Appbar.Header>
+      <Appbar.Header style={{ backgroundColor: "white" }}>
         <Appbar.BackAction onPress={_goBack} />
         <Appbar.Content title="Form" titleStyle={styles.formTitle} />
         <TouchableOpacity style={styles.saveButton} onPress={_handleSave}>
@@ -88,15 +88,18 @@ const FormScreen = () => {
         </TouchableOpacity>
       </Appbar.Header>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Picker
-          selectedValue={importance}
-          style={styles.picker}
-          onValueChange={(itemValue, _itemIndex) => setImportance(itemValue)}
-        >
-          <Picker.Item label="Reminder" value="Reminder" />
-          <Picker.Item label="Normal" value="Normal" />
-          <Picker.Item label="Important" value="Important" />
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={importance}
+            style={styles.picker}
+            onValueChange={(itemValue, _itemIndex) => setImportance(itemValue)}
+          >
+            <Picker.Item label="Reminder" value="Reminder" />
+            <Picker.Item label="Normal" value="Normal" />
+            <Picker.Item label="Important" value="Important" />
+          </Picker>
+        </View>
+
         <View
           style={[
             styles.innerContent,
@@ -196,13 +199,16 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlignVertical: "top",
   },
-  picker: {
-    borderWidth: 4,
-    height: 50,
+  pickerContainer: {
+    borderWidth: 2,
+    borderColor: "#114B5F",
     marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 5,
+  },
+  picker: {
+    height: 50,
     fontWeight: "bold",
     color: "#114B5F",
     borderColor: "#114B5F",

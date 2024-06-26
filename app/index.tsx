@@ -125,7 +125,7 @@ const DashboardScreen: React.FC = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <Appbar.Header>
+        <Appbar.Header style={{ backgroundColor: "white" }}>
           <Appbar.Content
             titleStyle={styles.dashboardTitle}
             title="Dashboard"
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   cardTitle: {
-    marginTop: 15,
+    marginTop: 20,
     fontSize: 18,
     fontWeight: "bold",
   },

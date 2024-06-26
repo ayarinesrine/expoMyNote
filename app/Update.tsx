@@ -13,6 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
+import { Appbar } from "react-native-paper";
 
 interface Note {
   id: string;
@@ -32,11 +33,10 @@ const UpdateScreen: React.FC = () => {
     date: "",
     title: "",
     content: "",
-    importance: "Reminder", // Default importance value
+    importance: "Reminder",
   });
 
   useEffect(() => {
-    // Load note data based on noteId from AsyncStorage or other data source
     const loadNote = async () => {
       try {
         const storedNotes = await AsyncStorage.getItem("notes");
@@ -64,7 +64,7 @@ const UpdateScreen: React.FC = () => {
           n.id === note.id ? { ...n, ...note } : n
         );
         await AsyncStorage.setItem("notes", JSON.stringify(updatedNotes));
-        navigation.goBack();
+        navigation.navigate("index" as never);
       }
     } catch (error) {
       console.error("Failed to update note.", error);
@@ -89,23 +89,34 @@ const UpdateScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          onPress={() => navigation.goBack()}
-          style={styles.backButton}
-        >
-          <MaterialCommunityIcons name="arrow-left" size={24} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Update Note</Text>
-        <TouchableOpacity onPress={handleUpdateNote} style={styles.saveButton}>
+      <Appbar.Header style={{ backgroundColor: "white" }}>
+        <Appbar.BackAction onPress={() => navigation.goBack()} />
+        <Appbar.Content title="Form" titleStyle={styles.headerTitle} />
+        <TouchableOpacity style={styles.saveButton}>
           <MaterialCommunityIcons
             name="content-save-outline"
+            onPress={handleUpdateNote}
             size={24}
             color="white"
           />
         </TouchableOpacity>
-      </View>
+      </Appbar.Header>
+
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.pickerContainer}>
+          <Picker
+            style={styles.picker}
+            selectedValue={note.importance}
+            onValueChange={(itemValue, _itemIndex) =>
+              setNote((prevNote) => ({ ...prevNote, importance: itemValue }))
+            }
+          >
+            <Picker.Item label="Reminder" value="Reminder" />
+            <Picker.Item label="Normal" value="Normal" />
+            <Picker.Item label="Important" value="Important" />
+          </Picker>
+        </View>
+
         <View
           style={[
             styles.innerContent,
@@ -143,17 +154,6 @@ const UpdateScreen: React.FC = () => {
               setNote((prevNote) => ({ ...prevNote, content: text }))
             }
           />
-          <Picker
-            style={styles.picker}
-            selectedValue={note.importance}
-            onValueChange={(itemValue, _itemIndex) =>
-              setNote((prevNote) => ({ ...prevNote, importance: itemValue }))
-            }
-          >
-            <Picker.Item label="Reminder" value="Reminder" />
-            <Picker.Item label="Normal" value="Normal" />
-            <Picker.Item label="Important" value="Important" />
-          </Picker>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -176,27 +176,25 @@ const getBackgroundColor = (importance: string) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#114B5F",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
+  header: {},
   backButton: {
     padding: 8,
   },
   headerTitle: {
-    flex: 1,
-    fontSize: 18,
     fontWeight: "bold",
-    color: "#fff",
-    textAlign: "center",
+    color: "#114B5F",
   },
   saveButton: {
-    padding: 8,
+    backgroundColor: "#114B5F",
+    padding: 12,
+    borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    color: "#fff",
+    fontSize: 30,
   },
   scrollContainer: {
     flexGrow: 1,
@@ -220,7 +218,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   contentInput: {
-    height: 150,
+    flex: 1,
+    fontSize: 16,
+    color: "#114B5F",
+    backgroundColor: "white",
+    borderRadius: 5,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 10,
     textAlignVertical: "top",
   },
   dateInput: {
@@ -238,13 +243,16 @@ const styles = StyleSheet.create({
     color: "#114B5F",
     fontWeight: "bold",
   },
-  picker: {
-    borderWidth: 4,
-    height: 50,
+  pickerContainer: {
+    borderWidth: 2,
+    borderColor: "#114B5F",
     marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
     borderRadius: 5,
+  },
+  picker: {
+    height: 50,
     fontWeight: "bold",
     color: "#114B5F",
     borderColor: "#114B5F",
